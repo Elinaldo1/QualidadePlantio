@@ -1,0 +1,24 @@
+{
+  "name": "coabsa",
+  "displayName": "coabsa",
+  "expo": {
+    "name": "coabsa",
+    "slug": "coabsa",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/cadastrar.png",
+    "splash": {
+      "image": "",
+      "background": "#ff34"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "web": {
+      "favicon": "./src/assets/cadastrar.png"
+    },
+    "android": {
+      "package": "com.elinaldosa.coabsa"
+    }
+  }
+}
