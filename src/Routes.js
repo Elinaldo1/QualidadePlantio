@@ -5,7 +5,7 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import Form from './pages/forms/cadSetor';
 import FormMuda from './pages/forms/qmuda/index';
-import Formi from './pages/forms/qplantio/index';
+import Formi from './pages/forms/qplantio/teste';
 // import Local from './pages/location';
 import Login from './pages/login';
 import PrPlantio from './pages/parametros';

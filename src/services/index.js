@@ -4,7 +4,7 @@ import { ParamPlantio, QualidadeSchema } from '../models';
 
 
 
-export function getRealm(){
+export default function getRealm(){
 
   return Realm.open({
     schema: [QualidadeSchema,ParamPlantio]

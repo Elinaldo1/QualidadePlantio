@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from "react";
 import { View } from "react-native";
 import { ThemeProvider } from 'styled-components';
-import cnx from '../../../nodesqlserver/db';
 import CaixaTexto, { Background, Botao, Imagem, Styles, Titulo } from './style';
 
 
@@ -62,7 +61,7 @@ export default function Login(){
             <Botao 
             style= {Styles.loginButton} 
             // onPress ={()=> {onSignIn().then(() => navigation.navigate({screen: 'Home'}));}}
-            onPress = {() => cnx.conn()}
+            onPress = {() => alert({respons})}
             >
   
                 <AntDesign name= 'arrowright' style = {{fontSize: 30, color: '#111'}} />

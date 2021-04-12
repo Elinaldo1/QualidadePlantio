@@ -1,29 +1,12 @@
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import { Alert, StyleSheet } from 'react-native';
 
-
-  
-// export default function Local () /*extends React.Component*/ {
-
-  // const [errorMessage,setErrorMessage]=useState("")
-  // const [local,setLocation] = useState(
-  //   {
-  //     latitude:'',
-  //     longitude:'',
-  //   })
-    
-    // geocode:null,
-    // errorMessage:"",
-    // mapRegion:null,
   
    export const Local ={
-        
-
-   
-
+     
     buscaLocal: async () => {
 
     const local = [] 
@@ -46,9 +29,8 @@ import { Alert, StyleSheet } from 'react-native';
 
     let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.BestForNavigation});
     const { latitude , longitude } = location.coords
-    // setLocation(prevState => {return{...prevState, latitude: latitude, longitude:longitude }});
     local.push({latitude: latitude, longitude:longitude })
-    
+
    await AsyncStorage
          .removeItem('houses')
          .then(
@@ -63,28 +45,8 @@ import { Alert, StyleSheet } from 'react-native';
                  )
          )
 
-    // Center the map on the location we just fetched.
-    // this.setState({mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }});
-   
   },
 
-  // render(){
-  //   const {location,geocode, errorMessage} = this.state
-  //   return (
-  //       <>
-  //       <View style={styles.overlay}>
-         
-  //         <Text style={styles.heading3}>{location ? `${location.latitude}, ${location.longitude}` :""}</Text>
-  //         <Text style={styles.heading2}>{errorMessage}</Text>
-
-  //         <TouchableOpacity style = {styles.button} onPress = {()=> {this.getLocationAsync()}} >
-  //           <Text>Location</Text>
-  //         </TouchableOpacity> 
-  //     </View>  
-  //     </>
-  //   //  </ImageBackground>
-  //   );
-  // }
 }
 
 const styles = StyleSheet.create({

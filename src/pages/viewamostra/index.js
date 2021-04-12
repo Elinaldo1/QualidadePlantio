@@ -3,7 +3,7 @@ import Amostras from '../../components/Amostra';
 import Header from '../../components/header/index';
 import { querie } from '../../databases';
 import insert from '../../services/enviadados';
-import { getRealm } from '../../services/index';
+import getRealm from '../../services/index';
 import { Botao, Container, List, styles, TextBotao } from './styles';
 
 
@@ -131,8 +131,8 @@ export default function Amostra() {
       <List
         showsVerticalScrollIndicator = {false}
         keyboardsShouldPersistTaps='handle'
-        // data={amostras}
-        data={dados}
+        data={amostras}
+        // data={dados}
         keyExtractor={item => String(item.id)}
         renderItem={({item}) => (<Amostras data = {item} editar={editarAmostra} excluir={excluirAmostra} />)}
       />
