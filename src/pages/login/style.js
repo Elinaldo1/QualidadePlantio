@@ -13,7 +13,7 @@ export default function CaixaTexto(props){
     <InputMatricula
     placeholder = {props.placeholder}
     keyboardType={props.keyboardType}
-    // value = {matricula}
+    value = {props.value}
     onChangeText={props.onChangeText}
     maxLength = {props.maxLength}
     onFocus = {()=>setCores(prevState => {return{...prevState, border:'#111', borderW: 2}})}

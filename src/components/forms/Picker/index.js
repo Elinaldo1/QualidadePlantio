@@ -10,7 +10,7 @@ export default function Combobox(props){
       style={ListBox}
       placeholder={props.placeholder}
       onValueChange = {props.onValueChange}
-      // onValueChange={(value) => props.setFieldValue('amostra',value)}
+      value={props.value}
       items={props.items}
    />
   )

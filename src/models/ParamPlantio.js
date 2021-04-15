@@ -5,10 +5,9 @@ export default class ParamPlantio{
     primaryKey: 'id',
     properties:{
       id: { type: 'int', indexed: true },
-      sulco: 'float',
-      espaco_linha: 'float',
-      cobricao: 'float',
-      gemas_v_metro: 'float'
-
+      sulco: 'string',
+      espaco_linha: 'string',
+      cobricao: 'string',
+      gemas_v_metro: 'string'
       }
     }}

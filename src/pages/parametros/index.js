@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/header';
 import Parametro from '../../components/parametros/parametroPlantio';
-import { getRealm } from '../../services/index';
+import getRealm from '../../services/index';
 import { Botao, Container, List, styles, TextBotao } from './styles';
 
 export default function Prlantio() {

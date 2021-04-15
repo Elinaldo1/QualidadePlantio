@@ -16,6 +16,11 @@ export default function Login(){
     borderRes:'#111', borderWRes: 0,
     border:'#111', borderW: 0,
   });
+  
+  function limpacampos(){
+    setMatricula('');
+    setRespons('');
+  }
 
   const data = new Date()
 
@@ -61,7 +66,7 @@ export default function Login(){
             <Botao 
             style= {Styles.loginButton} 
             // onPress ={()=> {onSignIn().then(() => navigation.navigate({screen: 'Home'}));}}
-            onPress = {() => alert({respons})}
+            onPress = {() => {limpacampos()}}
             >
   
                 <AntDesign name= 'arrowright' style = {{fontSize: 30, color: '#111'}} />

@@ -7,7 +7,6 @@ import * as Yup from 'yup';
 import InputText from '../../../components/forms/input';
 import Combobox from '../../../components/forms/Picker';
 import Header from '../../../components/header';
-import Helpers from '../../../databases';
 import getRealm from '../../../services';
 import { Local } from '../../location';
 import { Botao, BotaoText, Campos, CenterView, Container, ContainerCampos, ContainerInput, Texto, TituloCampos } from './style';
@@ -25,11 +24,37 @@ const cores = {
 
 
 const Formi = () => {
+  
+    function limpaCampos(){
+        setValues(values => ({
+         ...values,
+         fazenda: '',
+         up:'',
+         variedade: '',
+         plantadora:'',
+         turno:'',
+         amostra:'',
+         esteira:'',
+         kg_amostra:'',
+         sulco:'',
+         cobricao:'',
+         espaco_linha:'',
+         toletes:'',
+         gemas_viaveis:'',
+         gemas_inviaveis:'',
+         obs: '',
+         
+       })
+        )};
+
+
   const navigation = useNavigation();
   const [values, setValues] = useState ({ 
     fazenda: '',
+    variedade: '',
     up:'',
     plantadora:'',
+    variedade:'',
     turno:'',
     amostra:'',
     esteira:'',
@@ -38,7 +63,6 @@ const Formi = () => {
     cobricao:'',
     espaco_linha:'',
     toletes:'',
-    gemas_total:'',
     gemas_viaveis:'',
     gemas_inviaveis:'',
     obs: '',
@@ -51,6 +75,8 @@ const Formi = () => {
         .required('UP não pode está vazio'),
       plantadora:Yup.number()
         .required('Plantadora não pode está vazio'),
+      variedade:Yup.string()
+        .required('Variedade não pode está vazio'),
       turno:Yup.string()
         .required('Turno não pode está vazio'),
       amostra:Yup.number()
@@ -67,8 +93,6 @@ const Formi = () => {
         .required('Espaço_Linha não pode está vazio'),
       toletes:Yup.number()
         .required('Toletes não pode está vazio'),
-      gemas_total:Yup.number()
-        .required('Gemas_Total não pode está vazio'),
       gemas_viaveis:Yup.number()
         .required('Gemas_viáveis não pode está vazio'),
       gemas_inviaveis:Yup.number()
@@ -77,6 +101,7 @@ const Formi = () => {
     
     async function  handleSubmit () {
       
+      // limpaCampos();
       let lat = null
       let long = null
       const schema = 'Plantio';
@@ -109,7 +134,7 @@ const Formi = () => {
                         const coordenadas = JSON.parse(houses)
                         console.log("coord "+ houses)
                         lat = coordenadas[0].latitude
-                        long = coordenadas[0].latitude
+                        long = coordenadas[0].longitude
                       }else{ return }
                       
                       // alert('realm')
@@ -124,24 +149,29 @@ const Formi = () => {
                       
                       const dados = {
                         id: id,
-                        data:`${data.getDate()}-${data.getMonth()+1}-${data.getFullYear()} ${data.getHours()}:${data.getMinutes()}:${data.getMilliseconds()}`,
+                        data:`${data.getDate()}-${data.getMonth()+1}-${data.getFullYear()} ${data.getHours()}:${data.getMinutes()}:${data.getSeconds()}`,
                         matricula: '5492',
                         responsavel: 'Elinaldo',
+                        variedade: values.variedade,
                         amostra: parseInt(values.amostra),
                         fazenda: values.fazenda,
                         up: parseFloat(values.up),
                         plantadora: parseFloat(values.plantadora),
                         turno: values.turno,
                         esteira: values.esteira,
-                        kg_amostra: parseFloat(values.kg_amostra),
+                        kg_amostra: values.kg_amostra.toString(),
                         sulco: parseFloat(values.sulco),
                         cobricao:parseFloat(values.cobricao),
-                        espaco_linha: parseFloat(values.espaco_linha),
+                        espaco_linha: values.espaco_linha.toString(),
                         toletes:parseFloat(values.toletes),
-                        gemas_total:parseFloat(values.gemas_total),
+                        gemas_total:parseFloat(parseInt(values.gemas_viaveis)+parseInt(values.gemas_inviaveis)),
                         gemas_viaveis:parseFloat(values.gemas_viaveis),
                         gemas_inviaveis: parseFloat(values.gemas_inviaveis),
                         obs: values.obs,
+                        peso_m_tol: parseFloat(parseFloat(values.kg_amostra)/parseInt(values.toletes)).toFixed(2).toString(),
+                        tolete_metro: parseFloat(parseFloat(values.toletes)/2).toFixed(2).toString(),
+                        gv_mt: parseFloat(parseInt(values.gemas_viaveis)/2).toFixed(2).toString(),
+                        muda_ha: parseFloat((parseFloat(values.toletes)/2) * (parseFloat(values.kg_amostra)/parseInt(values.toletes))*0.66667).toFixed(2).toString(),
                         lat: parseFloat(lat) ,
                         long: parseFloat(long) ,
                       }
@@ -151,40 +181,18 @@ const Formi = () => {
                         console.log('gravando realm2')
                         await realm.create(`${schema}`, dados)
                         console.log(dados)
-                        limpaCampos();
                         Keyboard.dismiss();
                       }
                       
                       )
                       
-                    }).then(Alert.alert('Qualiade Plantio','Salvo com sucesso!'))
+                    }).then( limpaCampos(), Alert.alert('Qualiade Plantio','Salvo com sucesso!'))
               })();
             }
           }
        )}else{Alert.alert('Campo Vazio','Preencha todos os campos obrigatórios(*)')}
   }
 
- limpaCampos = async()=>{
-     setValues(values => ({
-      ...values,
-      fazenda: 'teste',
-      up:'',
-      plantadora:'',
-      turno:'',
-      amostra:'',
-      esteira:'',
-      kg_amostra:'',
-      sulco:'',
-      cobricao:'',
-      espaco_linha:'',
-      toletes:'',
-      gemas_total:'',
-      gemas_viaveis:'',
-      gemas_inviaveis:'',
-      obs: '',
-      
-    })
-    )};
 
   return(
     
@@ -198,7 +206,7 @@ const Formi = () => {
     <Campos>
       <TituloCampos>IDENTIFICAÇÃO</TituloCampos> 
 
-      <ContainerInput width= '80%' >
+      <ContainerInput width= '100%' >
         <Texto>Fazenda</Texto>
         <InputText
             value={values.fazenda}
@@ -207,7 +215,16 @@ const Formi = () => {
         />
       </ContainerInput >
 
-      <ContainerInput width= '20%' >
+      <ContainerInput width= '67%' >
+        <Texto>Variedade</Texto>
+        <InputText
+            value={values.variedade}
+            onChangeText={text => setValues(values => ({...values, variedade: text}))}
+            
+        />
+      </ContainerInput >
+
+      <ContainerInput width= '33%' >
         <Texto>UP</Texto>
         <InputText
               value={values.up}
@@ -336,7 +353,7 @@ const Formi = () => {
       <ContainerCampos width = '100%'>
           <Campos>
             <TituloCampos>Nº DE GEMAS</TituloCampos>
-            <ContainerInput width = '33%'>
+            <ContainerInput width = '50%'>
               <Texto>Viáveis</Texto>
               <InputText
                 keyboardType = 'numeric'
@@ -346,7 +363,7 @@ const Formi = () => {
                 />
             </ContainerInput>
 
-            <ContainerInput width = '33%'>
+            <ContainerInput width = '50%'>
               <Texto>Inviáveis</Texto>
               <InputText
                 keyboardType = 'numeric'
@@ -356,15 +373,6 @@ const Formi = () => {
                 />
             </ContainerInput>
             
-            <ContainerInput width = '33%'>
-              <Texto>Total</Texto>
-              <InputText
-                keyboardType = 'numeric'
-                value = {values.gemas_total}
-                onChangeText = {text => setValues((values) => ({...values, gemas_total:text}))}
-                placeholder = 'total'
-                />
-            </ContainerInput>
           </Campos>
       </ContainerCampos>
 
@@ -387,7 +395,7 @@ const Formi = () => {
         onPress={() => handleSubmit()}
         title="SALVAR"
       >
-        <BotaoText>sal</BotaoText>
+        <BotaoText>Salvar</BotaoText>
       </Botao>
       <Botao
         onPress={()=> navigation.navigate('PrPlantio')}
@@ -396,8 +404,8 @@ const Formi = () => {
         <BotaoText>Parâmetros</BotaoText>
       </Botao>
 
-      <Botao onPress = {() => Helpers.readAll('gpsfrota', 'PLANTADORA')} >
-        <BotaoText >mssql</BotaoText>
+      <Botao onPress = {() => navigation.navigate('Amostra')} >
+        <BotaoText >Amostras</BotaoText>
       </Botao>
     </CenterView>
 

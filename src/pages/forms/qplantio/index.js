@@ -354,7 +354,7 @@ export default withFormik({
                       
                       const dados = {
                         id: id,
-                        data:`${data.getDate()}-${data.getMonth()+1}-${data.getFullYear()} ${data.getHours()}:${data.getMinutes()}:${data.getMilliseconds()}`,
+                        data:`$${data.getMonth()+1}-${data.getDate()}-${data.getFullYear()} ${data.getHours()}:${data.getMinutes()}:${data.getMilliseconds()}`,
                         matricula: '5492',
                         responsavel: 'Elinaldo',
                         amostra: parseInt(values.amostra),

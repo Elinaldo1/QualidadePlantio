@@ -11,11 +11,14 @@ export default function InputText(props){
   return(
     <ThemeProvider theme={cores}>
       <InputT
+      
       multiline = {props.multiline}
       placeholder = {props.placeholder}                                                                                                                                                                  
       keyboardType={props.keyboardType}
-      // value = {matricula}
+      value = {props.value}
       onChangeText={props.onChangeText}
+      // blurOnSubmit={false}
+      // onSubmitEditing = {}
       maxLength = {props.maxLength}
       onFocus = {()=>setCores(prevState => {return{...prevState, border:'#1117', borderW: 2}})}
       onEndEditing = {() => setCores(prevState => {return{...prevState, border:'#1117', borderW: 0}})}

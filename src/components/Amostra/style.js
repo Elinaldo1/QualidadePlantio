@@ -15,6 +15,7 @@ export const ContainerSecoes = styled.View `
   border-radius: 10px;
   border-color: #1114;
   padding-top: 1px;
+
   
 `;
 
@@ -24,11 +25,10 @@ export const ContainerGemas = styled.View `
   background: #fff;
   margin-bottom: 5px;
   align-items:center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  
+  flex-direction: row; 
+   flex-wrap: wrap;
 
 `;
 
@@ -148,6 +148,17 @@ export const Botao = styled.TouchableOpacity `
     border-radius: 5px;
     align-items: center;
     justify-content: center;
+    flex-direction:row;
+    
+`;
+export const BotaoCadastro = styled.TouchableOpacity `
+   
+    margin-right: 15px;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+
     
 `;
 

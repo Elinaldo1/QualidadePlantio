@@ -37,10 +37,35 @@ padding: 5px;
   padding:10px;
   border-radius: 10px;
 `;
+ export const BotaoCadastro = styled.TouchableOpacity`
+  flex:1;
+  background-color: #fff;
+  padding:10px;
+  border-radius: 10px;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: center;
+  margin: 40px
+`;
+
+export const ConteinerMensagem = styled(Container) `
+      align-items: center;
+      justify-content: center;
+
+`
+
 export const TextBotao = styled.Text `
   font-size: 17px;
   text-align: center;
 `
+export const TextMensagem = styled.Text `
+  font-size: 20px;
+  text-align: center;
+  color: #f119;
+  
+`
+
+
 export const Title = styled.Text `
     font-size: 22px;
     margin-left: 15px;

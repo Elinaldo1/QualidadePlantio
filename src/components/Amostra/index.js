@@ -1,8 +1,10 @@
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import {
   Botao,
-  BotaoText, CenterView, Cobricao, Container,
+  BotaoCadastro, BotaoText, CenterView, Cobricao, Container,
   ContainerGemas, ContainerSecoes, Data,
   Espaco_linha, Esteira, Fazenda,
   Gemas_inviaveis, Gemas_total,
@@ -16,8 +18,10 @@ import {
 } from './style';
 
 
+
 export default function Amostra({data, editar, excluir}) {
- return  data ? (
+  const navigation = useNavigation();
+  return  data ? (
    <Container>
     <ContainerSecoes>
       <ContainerGemas>
@@ -50,16 +54,21 @@ export default function Amostra({data, editar, excluir}) {
 
             <TituloTexto>UP:</TituloTexto>
             <Up>{data.up}</Up>
+          </CenterView>
+          
+          <CenterView>
+            <TituloTexto>Variedade:</TituloTexto>
+            <Up>{data.variedade}</Up>
 
             <TituloTexto>Turno:</TituloTexto>
             <Turno>{data.turno}</Turno>
           </CenterView>
-          
+
           <CenterView>
             <TituloTexto>Frota:</TituloTexto>
-            <Plantadora>{data.plantadora}</Plantadora>
-            
+            <Plantadora>{data.plantadora}</Plantadora>  
           </CenterView>
+
         </ContainerGemas>
     </ContainerSecoes>
 
@@ -146,28 +155,28 @@ export default function Amostra({data, editar, excluir}) {
  
       <CenterView>
         <Botao onPress = {() => editar(data.id)} >
+          <AntDesign name = 'edit' style = {{fontSize: 20}} />
           <BotaoText>Editar</BotaoText>
         </Botao>
         
         <Botao onPress = {() => excluir(data.id)} >
+          <AntDesign name = 'delete' style = {{fontSize: 20}} />
           <BotaoText>Excluir</BotaoText>
         </Botao>
+        <BotaoCadastro onPress = {()=>{navigation.navigate('Qualidade Plantio')}}>
+          <AntDesign name = 'pluscircleo' style = {{fontSize: 30}} />
+        </BotaoCadastro>
+
       </CenterView> 
     
    </Container>):(
+
      <Container>
       <CenterView>
-        <Botao onPress = {() => editar(data.id)} >
-          <BotaoText>Editar</BotaoText>
-        </Botao>
-        
-        <Botao onPress = {() => excluir(data.id)} >
-          <BotaoText>Excluir</BotaoText>
-        </Botao>
+        <ActivityIndicator size = 'large' color = '#fff' />
       </CenterView> 
-       <ActivityIndicator size = 'large' color = '#fff' />
      </Container>
-   );
+   )
   
 };
  
