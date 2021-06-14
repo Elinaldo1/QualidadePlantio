@@ -6,7 +6,7 @@ export const Container = styled.View `
   padding: 10px;
   border-radius: 5px;
   background: #fff;
-  margin-bottom: 15px;
+  margin: 3px;
   elevation:7;
 `;
 export const ContainerSecoes = styled.View `
@@ -38,10 +38,12 @@ export const Texto = styled.Text `
     font-size: 14px;
     font-style: italic;
     margin-right: 15px;
+    color:${props => props.color ? props.color :"#1119" };
 `;
 export const TituloTexto = styled(Texto) `
   font-weight: bold;
   margin-right:5px;
+  color:${props => props.color ? props.color :"#1119" }; 
 `;
 export const TituloGemas = styled(Texto) `
   font-weight: bold;
@@ -139,6 +141,8 @@ export const CenterView = styled.View `
     flex-direction: row;
     margin-top: 15px;
     flex-wrap: wrap;
+    align-items:center;
+    justify-content:center
 `;
 
 export const Botao = styled.TouchableOpacity `

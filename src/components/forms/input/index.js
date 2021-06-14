@@ -17,8 +17,13 @@ export default function InputText(props){
       keyboardType={props.keyboardType}
       value = {props.value}
       onChangeText={props.onChangeText}
+      secureTextEntry = {props.secureTextEntry}
+      width = {props.width}
       // blurOnSubmit={false}
       // onSubmitEditing = {}
+      editable = {props.editable}
+      autoCompleteType = 'off' 
+      autoCorrect = {false}
       maxLength = {props.maxLength}
       onFocus = {()=>setCores(prevState => {return{...prevState, border:'#1117', borderW: 2}})}
       onEndEditing = {() => setCores(prevState => {return{...prevState, border:'#1117', borderW: 0}})}

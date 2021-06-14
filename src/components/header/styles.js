@@ -19,10 +19,11 @@ export const styles= StyleSheet.create({
     width:'80%',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
     color:'#fff',
     paddingBottom:10,
+    
 
   },
   imagem:{
@@ -31,8 +32,8 @@ export const styles= StyleSheet.create({
     
   },
   containerUser:{
-    width:'80%',
-    justifyContent: 'space-between',
+    width:'75%',
+    justifyContent: 'center',
     alignItems: 'flex-start',
     // flexDirection: 'row',
     paddingTop:10,
@@ -52,21 +53,25 @@ export const styles= StyleSheet.create({
     paddingRight: 20,
     fontWeight: 'bold',
     
+    
   },
   Botao:{
     
-    width:'20%',
+    width:'25%',
     flexDirection: 'row',
     borderRadius:50,
     borderWidth:1,
     borderColor: '#fff',
     padding: 5,
-    elevation:5
+    backgroundColor: '#f229',
+    
   },
   BotaoMenu:{
     width: '20%',
     flexDirection: 'row',
     borderRadius:50,
+    alignItems:'center',
+    justifyContent:'flex-start',
     
     
     // borderWidth:1,

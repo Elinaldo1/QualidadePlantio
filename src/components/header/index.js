@@ -1,30 +1,45 @@
 import { AntDesign } from '@expo/vector-icons';
-import React from 'react';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext } from 'react';
 import { StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { AuthContext } from '../../contexts/auth';
 import { styles } from './styles';
 
+const Drawer   = createDrawerNavigator();
 
 
 function Header(texto) {
-  return (
-  <View style= {styles.container}>
-      <StatusBar backgroundColor = '#00b33b'/>
-      <TouchableOpacity style={styles.BotaoMenu}>
-        <AntDesign name = 'menuunfold' style = {{fontSize:20, color: '#fff'}}/>
-      </TouchableOpacity>
-    {/* <Image style={styles.imagem} source={require('../../assets/cadastrar.png')} resizeMode = 'cover' /> */}
-    <Text style={styles.headertext}> {texto.caption} </Text>
-    <View style ={styles.containerUser}>
-      <Text style={styles.textUser}>5492</Text>
-      <Text style={styles.textUser}>Elinaldo Sa Correia da silva</Text>
-      
 
+  const navigation = useNavigation();
+  const { user, signOut } = useContext(AuthContext);
+  
+  async function logOut(){
+    navigation.navigate('Home')
+    signOut();
+  }
+
+  return (
+  // <AuthProvider>  
+    <View style= {styles.container}>
+        <StatusBar backgroundColor = '#00b33b'/>
+        <TouchableOpacity style={styles.BotaoMenu}  onPress={()=>{navigation.toggleDrawer();}}>
+          <AntDesign name = 'menuunfold' style = {{fontSize:25, color: '#fff'}}/>
+        </TouchableOpacity>
+      {/* <Image style={styles.imagem} source={require('../../assets/cadastrar.png')} resizeMode = 'cover' /> */}
+      <Text style={styles.headertext}> {texto.caption} </Text>
+      <View style ={styles.containerUser}>
+        <Text style={styles.textUser}>Matrícula:  {user}</Text>
+        {/* <Text style={styles.textUser}>Elinaldo Sa Correia da silva</Text> */}
+        
+
+      </View>
+        <TouchableOpacity onPress = {()=>{logOut()}} style={styles.Botao}>
+          <AntDesign name = 'logout' style = {{fontSize:18, paddingRight:5, color: '#fff'}}/>
+          <Text style={styles.textUser}> Exit</Text>
+        </TouchableOpacity>
     </View>
-      <TouchableOpacity style={styles.Botao}>
-        <AntDesign name = 'logout' style = {{fontSize:20, color: '#fff'}}/>
-        <Text style={styles.textUser}>Exit</Text>
-      </TouchableOpacity>
-  </View>
+  // </AuthProvider>
   );
 }
 export default Header;

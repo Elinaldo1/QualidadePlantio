@@ -1,25 +1,31 @@
 import Realm from 'realm';
-import { ParamPlantio, QualidadeSchema } from '../models';
+import {
+  ConfigServidor,
 
-
-
+  Infestacao, ParamColhMecanica, ParamMuda, ParamPlantio,
+  QualidadeSchema,
+  SchemaColhMecanica, SchemaMuda
+} from '../models';
 
 export default function getRealm(){
 
   return Realm.open({
-    schema: [QualidadeSchema,ParamPlantio],
-    schemaVersion: 1,
-    migration: (oldRealm, newRealm) =>{
-      // if (oldRealm.schemaVersion<1) {
-      //   const oldObjects = oldRealm.objects('schema');
-      //   const newObjects = newRealm.objects('schema');
-
-      //   for (let i =0; i< oldObjects.length; i++) {
-      //     newObjects[i].otherName = 'otherName';
-      //   }
-      // }
+    schema: [QualidadeSchema, ParamPlantio,
+      SchemaMuda, ParamMuda, SchemaColhMecanica,
+      ParamColhMecanica, ConfigServidor, Infestacao],
+    schemaVersion: 2,
+    migration: (oldRealm, newRealm) => {
+      if (oldRealm.schemaVersion>1) {
+        const oldObjects = oldRealm.objects('schema');
+        const newObjects = newRealm.objects('schema');
+        for (let i =0; i< oldObjects.length; i++) {
+          newObjects[i].otherName = 'otherName';
+        }
+      }
     },
   });
+  
+    // .catch(err=>console.log('erroo  '+err))
 }
 
 
@@ -33,6 +39,27 @@ export const excluirRealm = async (data, schema, filtro) => {
     };
   });
 }
+export const criarEditarRealm = async (data, schema, modified) => {
+  const realm = await getRealm();
+  if (modified!==null){
+    realm.write(async()=>{
+      await realm.create(schema, data, 'modified')
+    });
+  }else{
+    realm.write(async()=>{
+      await realm.create(schema, data)
+      });
+  }
+};
+
+export const criarRealm = async (data, schema) => {
+  const realm = await getRealm();
+  realm.write(async()=>{
+    await realm.create(schema, data)
+    });
+};
+
+
 export const excluirSchemaRealm = async (schema) => {
   const realm = await getRealm();
   realm.write(() => {

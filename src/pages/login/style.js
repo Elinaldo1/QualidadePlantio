@@ -99,7 +99,7 @@ export const Styles = StyleSheet.create({
     borderRightWidth: 7,
   },
   containerlogo:{
-     flex:1,
+    //  flex:1,
   
      /* alignSelf:"flex-end", */
      /* justifyContent: 'center', */
@@ -108,6 +108,7 @@ export const Styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom:30,
     width: '100%',
+    height:'50%'
     
     /* width:width-10,
     height: height * 0.32, */

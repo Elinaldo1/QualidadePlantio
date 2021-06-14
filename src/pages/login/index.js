@@ -1,33 +1,38 @@
-
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from "react";
-import { View } from "react-native";
+import React, { useContext, useState } from "react";
+import { Keyboard, View } from "react-native";
 import { ThemeProvider } from 'styled-components';
+import { AuthContext } from '../../contexts/auth';
 import CaixaTexto, { Background, Botao, Imagem, Styles, Titulo } from './style';
 
 
 export default function Login(){
-
-  const [ language, setLanguage ] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState();
 
   const [cores, setCores] = useState({
     borderRes:'#111', borderWRes: 0,
     border:'#111', borderW: 0,
   });
   
-  function limpacampos(){
-    setMatricula('');
-    setRespons('');
-  }
-
+  
   const data = new Date()
-
+  
+  const { signIn } = useContext(AuthContext);
   const navigation = useNavigation();
   const [dimensaoImagem, setdimensaoImagem] = useState(null);
   const [matricula, setMatricula] = useState('');
-  const [respons, setRespons] = useState('');
+
+  async function login(){
+
+    signIn(matricula)
+    limpacampos()
+  }
+
+  function limpacampos(){
+    Keyboard.dismiss();
+    setMatricula('');
+  }
+
   return(
     
     <ThemeProvider theme={cores}> 
@@ -45,7 +50,7 @@ export default function Login(){
           />
 
           <View style={Styles.containerTitulo}>
-            <Titulo>QUALIDADE PLANTIO</Titulo>
+            <Titulo>QUALIDADE</Titulo>
           </View>
         </View>
 
@@ -57,16 +62,10 @@ export default function Login(){
               onChangeText={text => setMatricula(text)}
               maxLength = {4}
             />
-            <CaixaTexto
-              placeholder = "RESPONSÀVEL"
-              value = {respons}
-              onChangeText={text => setRespons(text)}
-            />
 
             <Botao 
             style= {Styles.loginButton} 
-            // onPress ={()=> {onSignIn().then(() => navigation.navigate({screen: 'Home'}));}}
-            onPress = {() => {limpacampos()}}
+            onPress = {() => {login()}}
             >
   
                 <AntDesign name= 'arrowright' style = {{fontSize: 30, color: '#111'}} />

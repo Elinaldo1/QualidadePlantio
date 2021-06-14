@@ -8,6 +8,7 @@ export default class ParamPlantio{
       sulco: 'string',
       espaco_linha: 'string',
       cobricao: 'string',
-      gemas_v_metro: 'string'
+      gemas_v_metro: 'string',
+      comp_avaliacao: 'string'
       }
     }}
