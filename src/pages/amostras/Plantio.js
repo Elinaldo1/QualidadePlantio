@@ -2,10 +2,8 @@ import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
 import { AmostraPlantio } from '../../components/Amostra';
 import Header from '../../components/header/index';
-import insert from '../../services/enviadados';
 import getRealm, { excluirRealm } from '../../services/index';
 import {
   BotaoCadastro,
@@ -18,31 +16,23 @@ export default function Amostra() {
 
   const navigation = useNavigation();
   const [amostras, setAmostras] = useState([]);
-  const [qtdAmostra, setQtdAmostra] = useState('');
-  // const [valorAtual, setValorAtual] = useState(0)
-  const [load, setLoad] = useState(true);
   const schema = 'Plantio'
   
   useEffect(() => {
     
     const foco = navigation.addListener('focus', async () =>{
       
-      setLoad(!load)
       const realm = await getRealm();
       const data =  realm.objects(schema).sorted('id',true);
-      // if (load){
-        
+
         if (data.length>0){
             setAmostras(data);
           }
-        // }
-      });
-      return foco;
+    });
+    return foco;
   },[navigation]);
 
-
-
-   async function excluirAmostra (data) {
+  async function excluirAmostra (data) {
     const realm = await getRealm();
 
     excluirRealm(data,schema,'id');
@@ -54,9 +44,9 @@ export default function Amostra() {
 
   async function editarAmostra(data){
 
-     await AsyncStorage.setItem('editar','sim')
+   await AsyncStorage.setItem('editar','sim')
 
-     navigation.navigate('Apontar Amostra',{
+   navigation.navigate('Apontar Amostra',{
        id: data.id, 
        fazenda: data.fazenda,
        variedade: data.variedade,
@@ -73,19 +63,8 @@ export default function Amostra() {
        gemas_viaveis:data.gemas_viaveis,
        gemas_inviaveis:data.gemas_inviaveis,
        obs: data.obs,
-      })
-      
-  }
-
-  async function enviadados (){
-    if (amostras.length>0){ 
-      await insert(amostras,'baseqplantio', schema)
-        .catch(err => console.log('Erro ao enviar',err))
-  
-    }else{
-      Alert.alert('Sync Amostras','Não há dados para enviar')
-    }
-  }  
+    }) 
+  };
 
   return amostras.length>0 ? (
     

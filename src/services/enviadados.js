@@ -17,13 +17,9 @@ async function insert(dados, table, schema){
             
             log.push( `{"id": "${table.toUpperCase()}", "msg": "Nao há dados para enviar"}`)
             logFim.push(log[0])
-            // for (let index = 0; index < log.length; index++) {
-    
-            //       console.log(log[index]);
-            // }
             return logFim
             
-      }
+      };
       try {      
           const inicio = `iniciando envio de dados (${dados.length} Amostras)`;
           log.push(`"id":"${table.toUpperCase()}", "inicioEnvio":"${inicio.toUpperCase()}"`)
@@ -54,20 +50,22 @@ async function insert(dados, table, schema){
                                     log.push(res[0], res[1]);
                               }else{
                                     log.push(res[0]);
-                              }   
-                              //   res.map((item) => log.push(item));//retire para diminuir linhas do log
-                                
-                                 const result = dados[index]
-                                 if (res.length > 1){
-                                       enviados.push(parseInt(result['id']))
-                                 }else{
-                                       falha.push(parseInt(result['id']))
-                                 }
+                              };   
+
+                              const result = dados[index]
+
+                              if (res.length > 1){
+                                    enviados.push(parseInt(result['id']))
+                              }else{
+                                    falha.push(parseInt(result['id']))
+                              }
                            }                 
                        );
                      
                   }; 
-} catch (error) { log.push(`"erroInsert":"ERRO DE INSERT = ${error}"`);};
+} catch (error) { 
+      log.push(`"erroInsert":"ERRO DE INSERT = ${error}"`);
+};
       let fimEnvio = `"fimEnvioOk":"ENVIO FINALIZADO COM SUCESSO!"`
       if (falha.length>0){fimEnvio=`"fimEnvioFalha":"FALHA NO ENVIO!"`}
       if (falha.length>0 && enviados.length>0){fimEnvio=`"fimEnvioFalha":"ENVIO FINALIZADO COM FALHAS!"`}

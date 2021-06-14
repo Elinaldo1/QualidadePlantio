@@ -5,7 +5,7 @@ import AppRoutes from './app.routes';
 import AuthRoutes from './auth.routes';
 
 function Routes(){
-    // return (<AppRoutes/>)
+    
     const {signed, loading, login} = useContext(AuthContext);
     
     if(loading){

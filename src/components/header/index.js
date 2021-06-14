@@ -1,13 +1,9 @@
 import { AntDesign } from '@expo/vector-icons';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
 import { StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { AuthContext } from '../../contexts/auth';
 import { styles } from './styles';
-
-const Drawer   = createDrawerNavigator();
-
 
 function Header(texto) {
 
@@ -15,7 +11,6 @@ function Header(texto) {
   const { user, signOut } = useContext(AuthContext);
   
   async function logOut(){
-    navigation.navigate('Home')
     signOut();
   }
 

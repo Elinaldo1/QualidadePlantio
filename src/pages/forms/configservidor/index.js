@@ -66,16 +66,14 @@ const ConfigServidor = () => {
       }
     )
     return server
-    // navigation.navigate('Parâmetros Muda');
+
   };   
-  
-  
 
   const [values, setValues] = useState ({ 
     id: '1',
     server: '192.168.1.30',
     username: 'WEB',
-    password: 'SO@euposso',
+    password: '',
     database: 'canalog'
   })
   
@@ -143,9 +141,6 @@ const ConfigServidor = () => {
             }
           }
         )
-
-  
-    //  }else{Alert.alert('Campo Vazio','Preencha todos os campos obrigatórios')}
     }
     
   return (
