@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { createContext, useLayoutEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
 export const AuthContext = createContext({});
@@ -11,21 +11,21 @@ export default function AuthProvider({ children }) {
   const [login, setLogin] =  useState(false)
   const [logOut, setLogOut] =  useState(false)
 
-useLayoutEffect(() => {
+useEffect(() => {
   
       async function loadStorage(){
         
-        const log = await AsyncStorage.getItem('user')
-          if (log !==null) {
+        const storageUser = await AsyncStorage.getItem('user')
+          if (storageUser !== null) {
 
-            setUser(log)
+            setUser(storageUser)
             setLoading(false)
           }
 
           setLoading(false);
       };
-
-       loadStorage();
+ 
+     loadStorage();
 }, []);
 
   async function signIn(matricula){

@@ -1,7 +1,6 @@
 import Realm from 'realm';
 import {
   ConfigServidor,
-
   Infestacao, ParamColhMecanica, ParamMuda, ParamPlantio,
   QualidadeSchema,
   SchemaColhMecanica, SchemaMuda
