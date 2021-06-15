@@ -5,20 +5,6 @@ import AppRoutes from './app.routes';
 import AuthRoutes from './auth.routes';
 
 function Routes(){
-
-    // async function loadStorage(){
-        
-    //     const log = await AsyncStorage.getItem('user')
-    //       if (log !==null) {
-
-    //         setUser(log)
-    //         setLoading(false)
-    //       }
-
-    //       setLoading(false);
-    //   };
-
-    //    loadStorage();
     
     const {signed, loading, login} = useContext(AuthContext);
     
