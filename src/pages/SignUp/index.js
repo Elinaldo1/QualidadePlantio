@@ -36,7 +36,7 @@ export default function Inicio() {
        <AppDrawer.Screen name="Colheita Muda" component={PgColhMuda}/>
        <AppDrawer.Screen name="Colheita Mecanizada" component={PgColhMec}/>
        <AppDrawer.Screen name="Admin" component={Admin}/>      
-       <AppDrawer.Screen name="Câmera" component={Camera}/>          
+       <AppDrawer.Screen name="Câmera" component={Camera}/>      
    </AppDrawer.Navigator>
   );
 };

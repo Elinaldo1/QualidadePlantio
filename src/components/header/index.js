@@ -15,26 +15,28 @@ function Header(texto) {
   }
 
   return (
-  // <AuthProvider>  
+ 
     <View style= {styles.container}>
+
         <StatusBar backgroundColor = '#00b33b'/>
+
         <TouchableOpacity style={styles.BotaoMenu}  onPress={()=>{navigation.toggleDrawer();}}>
           <AntDesign name = 'menuunfold' style = {{fontSize:25, color: '#fff'}}/>
         </TouchableOpacity>
-      {/* <Image style={styles.imagem} source={require('../../assets/cadastrar.png')} resizeMode = 'cover' /> */}
-      <Text style={styles.headertext}> {texto.caption} </Text>
-      <View style ={styles.containerUser}>
-        <Text style={styles.textUser}>Matrícula:  {user}</Text>
-        {/* <Text style={styles.textUser}>Elinaldo Sa Correia da silva</Text> */}
-        
+        {/* <Image style={styles.imagem} source={require('../../assets/cadastrar.png')} resizeMode = 'cover' /> */}
+        <Text style={styles.headertext}> {texto.caption} </Text>
 
-      </View>
+        <View style ={styles.containerUser}>
+          <Text style={styles.textUser}>Matrícula:  {user}</Text>
+        </View>
+
         <TouchableOpacity onPress = {()=>{logOut()}} style={styles.Botao}>
           <AntDesign name = 'logout' style = {{fontSize:18, paddingRight:5, color: '#fff'}}/>
           <Text style={styles.textUser}> Exit</Text>
         </TouchableOpacity>
+        
     </View>
-  // </AuthProvider>
+
   );
 }
 export default Header;

@@ -1,7 +1,7 @@
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AmostraPlantio } from '../../components/Amostra';
 import Header from '../../components/header/index';
 import getRealm, { excluirRealm } from '../../services/index';
