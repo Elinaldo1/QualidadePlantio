@@ -167,7 +167,6 @@ export default function AmostraMuda({data, editar, excluir, novaAmostra}) {
         <BotaoCadastro onPress = {()=>{novaAmostra()}}>
           <AntDesign name = 'pluscircleo' style = {{fontSize: 30}} />
         </BotaoCadastro>
-
       </CenterView> 
     
    </Container>):(

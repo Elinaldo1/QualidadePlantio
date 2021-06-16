@@ -146,7 +146,7 @@ export const CenterView = styled.View `
 `;
 
 export const Botao = styled.TouchableOpacity `
-    background-color: #ddd;
+    background-color: ${props => props.backroundColor ? props.backGroundColor : '#ddd'  } ;
     padding: 5px;
     margin-right: 15px;
     border-radius: 5px;

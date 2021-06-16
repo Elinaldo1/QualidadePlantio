@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Alert, Keyboard, RefreshControl, StatusBar, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components';
 import * as Yup from 'yup';
 import { AmostraMuda } from '../../../components/Amostra';
@@ -133,7 +132,7 @@ export default function FormMuda ({route}){
    async function previa(){
       await criarEditarRealm(dadosPrevia, schema, idEdit).then(
         () => {
-          setModalPrevia(false)
+          // setModalPrevia(false)
           Alert.alert( 'Qualiade Colheita Muda','Salvo com sucesso!'),
           limpaCampos()
         }
@@ -268,11 +267,12 @@ export default function FormMuda ({route}){
                         long:parseFloat(longitude),
                       }
                       
-                      setDadosPrevia(dados)
+                      setDadosPrevia(dados);
+                      previa();
                       
                     }).then(() =>{ 
-                      Keyboard.dismiss(),
-                      setModalPrevia(true)
+                      Keyboard.dismiss()
+                      // setModalPrevia(true)
                     }
                     );
               })();
@@ -373,10 +373,12 @@ export default function FormMuda ({route}){
   <ThemeProvider theme={cores}>
    
    <Modal animationType = 'slide'  transparent = {false} visible = {modalPrevia}>
-    <AmostraMuda data= {dadosPrevia} excluir = { ()=> setModalPrevia(false) } editar = {previa} />
-    <TouchableOpacity style = {{marginBottom: 10, padding:15}}>
-      <Texto>fechar</Texto>
-    </TouchableOpacity>
+
+    <AmostraMuda 
+      data= {dadosPrevia} 
+      excluir = { ()=> setModalPrevia(false) }
+      editar = {previa}/>
+
    </Modal> 
       
    <ModalAmostra animationType = 'slide'  transparent = {false} visible = {modalAmostra} >
@@ -434,7 +436,7 @@ export default function FormMuda ({route}){
       onMomentumScrollEnd={e => {}}
       >
     <Campos>
-      <TituloCampos>IDENTIFICAÇÃO</TituloCampos> 
+      <TituloCampos >IDENTIFICAÇÃO</TituloCampos> 
 
       <ContainerInput width= '100%' >
         <Texto>Fazenda</Texto>

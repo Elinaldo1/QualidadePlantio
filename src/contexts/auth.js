@@ -11,19 +11,19 @@ export default function AuthProvider({ children }) {
   const [login, setLogin] =  useState(false)
   const [logOut, setLogOut] =  useState(false)
 
-useEffect(() => {
+  useEffect(() => {
+    
+    async function loadStorage(){
+      
+      const storageUser = await AsyncStorage.getItem('user')
+        if (storageUser !== null) {
   
-      async function loadStorage(){
-        
-        const storageUser = await AsyncStorage.getItem('user')
-          if (storageUser !== null) {
-
-            setUser(storageUser)
-            setLoading(false)
-          }
-
-          setLoading(false);
-      };
+          setUser(storageUser)
+          setLoading(false)
+        }
+  
+        setLoading(false);
+    };
  
      loadStorage();
 }, []);

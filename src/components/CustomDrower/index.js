@@ -22,12 +22,6 @@ export default function CustomDrower(props) {
   <DrawerContentScrollView {...props} style = {{backgroundColor:'#fff'}} >
     <DrawerItemList {...props}/>
 
-    {/* <DrawerItemList 
-      {...props}
-      label = 'EXIT'
-      inactiveBackgroundColor = '#f228'
-      onPress = {()=>alert('sair')}
-    /> */}
   </DrawerContentScrollView>
 
   <View style = {{width:'100%', height: 40,
