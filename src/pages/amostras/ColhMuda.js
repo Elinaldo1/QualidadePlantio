@@ -3,12 +3,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { AmostraMuda } from '../../components/Amostra';
+import Header from '../../components/header';
 import getRealm, { excluirRealm } from '../../services/index';
 import {
   BotaoCadastro, Container, ConteinerMensagem, List,
   styles, Text, TextMensagem
 } from './styles';
-
 
 export default function Amostra( ) {
 
@@ -23,7 +23,6 @@ export default function Amostra( ) {
       });
       return foco;
   },[navigation]);
-
 
   async function buscaAmostra(){
     const realm = await getRealm();
@@ -76,28 +75,28 @@ export default function Amostra( ) {
   return amostras.length>0 ? (
     
     <>
-      {/* <Header caption="AMOSTRAS COLHEITA MUDA" /> */}
+      <Header caption="AMOSTRAS COLHEITA MUDA" />
       <Container style={styles.container}>
-      <Text>{amostras.length} Amostras</Text>
-      <List
-        showsVerticalScrollIndicator = {false}
-        keyboardsShouldPersistTaps='handle'
-        data={amostras}
-        // data={dados}
-        keyExtractor={item => String(item.id)}
-        renderItem={({item}) => (<AmostraMuda 
-          data = {item} 
-          editar={editarAmostra} 
-          excluir={excluirAmostra}
-          novaAmostra = {() => navigation.navigate('Apontar Amostra')}
-          />)}
-      />
+        <Text>{amostras.length} Amostras</Text>
+        <List
+          showsVerticalScrollIndicator = {false}
+          keyboardsShouldPersistTaps='handle'
+          data={amostras}
+          // data={dados}
+          keyExtractor={item => String(item.id)}
+          renderItem={({item}) => (<AmostraMuda 
+            data = {item} 
+            editar={editarAmostra} 
+            excluir={excluirAmostra}
+            novaAmostra = {() => navigation.navigate('Apontar Amostra')}
+            />)}
+        />
       </Container>
 
     </>
   ):(
     <>
-    {/* <Header caption="AMOSTRAS COLHEITA MUDA" /> */}
+    <Header caption="AMOSTRAS COLHEITA MUDA" />
     <Container style={styles.container}>
        <BotaoCadastro onPress = {()=>navigation.navigate('Apontar Amostra')}>
          <AntDesign name = 'addfile' size = {50} color = '#111' style={{marginBottom:15}}  />

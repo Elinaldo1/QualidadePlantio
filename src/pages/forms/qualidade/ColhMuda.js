@@ -431,7 +431,7 @@ export default function FormMuda ({route}){
   )}
    </ModalAmostra>
 
-  <Header caption = "MUDA"/>
+  <Header caption = "COLHEITA MUDA"/>
 
   <Container
       onMomentumScrollEnd={e => {}}
@@ -624,7 +624,7 @@ export default function FormMuda ({route}){
           {/* <AntDesign name = 'save' size = {20} color = '#fff' /> */}
           <BotaoText>{botaoSalvar}</BotaoText>
         </Botao>
-        <Botao
+        {/* <Botao
           onPress={()=> navigation.navigate('Parâmetros')}
           title="SALVAR"
         >
@@ -633,7 +633,7 @@ export default function FormMuda ({route}){
 
         <Botao onPress = {() => buscaAmostra()} >
           <BotaoText >Amostras</BotaoText>
-        </Botao>
+        </Botao> */}
       </CenterView>
 
     </ThemeProvider>
