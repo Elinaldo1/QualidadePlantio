@@ -1,4 +1,3 @@
-import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
@@ -58,6 +57,7 @@ export default function FormColhMec({route}){
     }) 
 
   useEffect(() => {
+
     const unsubscribe = navigation.addListener('focus', async() => {
       // tela focada, chame a função desejada
 
@@ -118,7 +118,7 @@ export default function FormColhMec({route}){
     });
    // Retorne a função para cancelar a inscrição do evento para que seja removido na desmontagem 
    return unsubscribe;
-  }), [navigation];
+  }, [navigation]);
 
     function limpaCampos(){
       setValues(
@@ -491,7 +491,7 @@ export default function FormColhMec({route}){
           onPress={() => handleSubmit()}
           title="SALVAR"
         >
-          <AntDesign name = 'save' size = {23} />
+          {/* <AntDesign name = 'save' size = {23} /> */}
           <BotaoText>{botaoSalvar}</BotaoText>
         </Botao>
 

@@ -9,7 +9,7 @@ function Header(texto) {
 
   const navigation = useNavigation();
   const { user, signOut } = useContext(AuthContext);
-  
+
   async function logOut(){
     signOut();
   }

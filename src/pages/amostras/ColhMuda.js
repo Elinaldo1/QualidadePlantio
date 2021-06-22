@@ -2,9 +2,7 @@ import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
 import { AmostraMuda } from '../../components/Amostra';
-import insert from '../../services/enviadados';
 import getRealm, { excluirRealm } from '../../services/index';
 import {
   BotaoCadastro, Container, ConteinerMensagem, List,
@@ -24,7 +22,7 @@ export default function Amostra( ) {
         buscaAmostra();
       });
       return foco;
-  }),[];
+  },[navigation]);
 
 
   async function buscaAmostra(){
@@ -74,14 +72,6 @@ export default function Amostra( ) {
       })
       
    }
-
-  async function enviadados (){
-    if (amostras.length>0){ 
-      await insert(amostras,'baseqchmuda', schema)
-    }else{
-      Alert.alert('Sync Amostras','Não há dados para enviar')
-    }
-  }  
 
   return amostras.length>0 ? (
     

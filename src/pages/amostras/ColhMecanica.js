@@ -1,25 +1,18 @@
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { AmostraColhMecanica } from '../../components/Amostra';
 import Header from '../../components/header/index';
-import { AuthContext } from '../../contexts/auth';
-import insert from '../../services/enviadados';
 import getRealm, { excluirRealm } from '../../services/index';
-import { Botao, BotaoCadastro, Container, ConteinerMensagem, List, styles, Text, TextBotao, TextMensagem } from './styles';
+import { BotaoCadastro, Container, ConteinerMensagem, List, styles, Text, TextMensagem } from './styles';
 
 export default function Amostra() {
 
   const navigation = useNavigation();
   const [amostras, setAmostras] = useState([]);
-  const [idEdit, setIdEdit] = useState(null);
-  // const [valorAtual, setValorAtual] = useState(0)
   const [load, setLoad] = useState(true);
   const schema = 'SchemaColhMecanica'
-
-  const {usuario} = useContext(AuthContext);
   
   useEffect(() => {
 
@@ -36,10 +29,6 @@ export default function Amostra() {
       });
       return foco;
   },[navigation]);
-
-     async function usuarios(){
-       await usuario()
-     }
 
    async function excluirAmostra (data) {
     const realm = await getRealm();
@@ -75,15 +64,7 @@ export default function Amostra() {
       obs: data.obs
       })
       
-  }
-
-  async function enviadados (){
-    if (amostras.length>0){ 
-      await insert(amostras,'baseqchmec',schema)
-    }else{
-      Alert.alert('Sync Amostras','Não há dados para enviar')
-    }
-  }  
+  }; 
 
   return amostras.length>0 ? (
     
@@ -103,13 +84,6 @@ export default function Amostra() {
           />)}
       />
       </Container>
-{/*         
-       <Botao onPress = {()=>{excluirSchemaRealm(schema)}}>
-         <TextBotao>busca amostras</TextBotao>
-       </Botao> */}
-       <Botao onPress = {()=>enviadados()}>
-         <TextBotao>enviar ao server</TextBotao>
-       </Botao>
 
     </>
   ):(

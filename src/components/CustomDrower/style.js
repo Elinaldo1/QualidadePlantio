@@ -10,6 +10,6 @@ export const TituloDrawer = styled.Text `
 
 export const SubtituloDraewr = styled(TituloDrawer) `
   padding: 5px;
-  font-size: 18px;
+  font-size: 16px;
   color: green
 `

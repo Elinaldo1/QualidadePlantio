@@ -92,7 +92,7 @@ const ParamMuda = ({route}) => {
        });
        return foco;
  
-   }),[navigation];
+   },[navigation]);
 
   function limpaCampos(){
       setValues(values => ({

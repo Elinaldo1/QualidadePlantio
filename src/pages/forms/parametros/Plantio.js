@@ -37,7 +37,7 @@ const ParamPlantio = () => {
           setParametro(data);
         }
       })
-  },[load,navigation]);
+  },[navigation]);
 
   function limpaCampos(){
       setValues(values => ({

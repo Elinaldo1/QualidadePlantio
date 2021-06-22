@@ -55,8 +55,8 @@ export const Background = styled.KeyboardAvoidingView `
     flex:1;
     align-items: center;
     justify-content: center;
-    background-color: #00b33c;
-    
+    background-color: #00b33b;
+    /*  */
 `;
 
 export const Titulo = styled.Text`
@@ -97,6 +97,8 @@ export const Styles = StyleSheet.create({
     width:65,
     height:63,
     borderRightWidth: 7,
+    borderWidth: 0.5,
+    borderColor: 'green'
   },
   containerlogo:{
     //  flex:1,
@@ -137,20 +139,20 @@ export const Styles = StyleSheet.create({
     elevation:7,
   },
   container:{
-    flex:1,
-    alignSelf: "center",
+    flex: 1,
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop:20,
-    paddingTop:40,
-    paddingBottom: 40,
-    width: '95%',
+    backgroundColor: '#fff',
+    borderTopLeftRadius:30,
+    borderTopRightRadius:30
+    
    
   },
   title:{
     fontSize:20,
     fontWeight:"bold",
-    color:"#fff"
+    color:"#fff",
   },
 
 

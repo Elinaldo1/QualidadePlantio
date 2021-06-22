@@ -10,12 +10,13 @@ function Routes(){
     
     if(loading){
         return(
-            login ? (<Splash message = 'Logando Usuário...' />) : (<Splash message = 'Aguarde...' />)         
-        );
-    };
-    
-    return(
+            <Splash message = 'Carregando...' />        
+            );
+        };
+
+    return(      
         signed ?<AppRoutes/> : <AuthRoutes/> 
+        // <AppRoutes/> 
     );
 };
 

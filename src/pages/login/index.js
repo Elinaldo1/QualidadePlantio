@@ -1,29 +1,16 @@
 import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useState } from "react";
-import { Keyboard, View } from "react-native";
-import { ThemeProvider } from 'styled-components';
+import { Image, Keyboard, StatusBar, Text, View } from "react-native";
 import { AuthContext } from '../../contexts/auth';
-import CaixaTexto, { Background, Botao, Imagem, Styles, Titulo } from './style';
+import CaixaTexto, { Background, Botao, Styles } from './style';
 
 
 export default function Login(){
-
-  const [cores, setCores] = useState({
-    borderRes:'#111', borderWRes: 0,
-    border:'#111', borderW: 0,
-  });
-  
-  
-  const data = new Date()
-  
+ 
   const { signIn } = useContext(AuthContext);
-  const navigation = useNavigation();
-  const [dimensaoImagem, setdimensaoImagem] = useState(null);
   const [matricula, setMatricula] = useState('');
 
   async function login(){
-
     signIn(matricula)
     limpacampos()
   }
@@ -34,27 +21,15 @@ export default function Login(){
   }
 
   return(
-    
-    <ThemeProvider theme={cores}> 
-    
+ <>
       <Background>
-
-        <View 
-          onLayout = {({ nativeEvent: { layout:{width, height}}}) => setdimensaoImagem({width, height})}
-          style = { Styles.containerlogo } >
-          <Imagem
-              source={require('../../assets/BSA-WALLPAPER-LU.png')} 
-              resizeMode="cover"
-              width = {'100%'}
-              height = {'100%'}
-          />
-
-          <View style={Styles.containerTitulo}>
-            <Titulo>QUALIDADE</Titulo>
-          </View>
-        </View>
-
+            <StatusBar barStyle = 'default'  backgroundColor = '#00b33b'/>
+            <View style = {{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+              <Image source = {require('../../assets/icoApp.png')} style={{width:150, height:150, justifyContent: 'center'}}/>
+              <Text style ={{padding:10, fontWeight: 'bold', color: '#fff', fontSize: 18}} >APONTAMENTOS</Text>
+            </View>
         <View style = { Styles.container }> 
+            <Text style ={{padding:10, fontWeight: 'bold', color: 'green', fontSize: 18}} >LOGIN</Text>
             <CaixaTexto
               placeholder = "MATRÍCULA"
               keyboardType="numeric"
@@ -68,10 +43,10 @@ export default function Login(){
             onPress = {() => {login()}}
             >
   
-                <AntDesign name= 'arrowright' style = {{fontSize: 30, color: '#111'}} />
+                <AntDesign name= 'arrowright' style = {{fontSize: 30, color: 'green'}} />
             </Botao>
             </View>
       </Background>
-    </ThemeProvider>  
+   </>   
   );
 };

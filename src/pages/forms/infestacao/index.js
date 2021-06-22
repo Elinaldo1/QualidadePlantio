@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { Alert, Keyboard } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import * as Yup from 'yup';
@@ -25,8 +25,7 @@ const ufs = [
     {label:'B', value:'B'},
     {label:'C', value:'C'},
   ]
-
-export default function Infestacao({route}){
+function Infestacao({route}){
 
   const schema = 'Infestacao';
   const navigation = useNavigation();
@@ -98,7 +97,7 @@ export default function Infestacao({route}){
 
   
 
-  useEffect(() => {
+  useCallback(() => {
     const foco = navigation.addListener('focus', async ()=>{
 
      await AsyncStorage.getItem('editar').then(
@@ -195,7 +194,7 @@ export default function Infestacao({route}){
    }    
    );
    return foco;
-}),[navigation];
+},[navigation]);
 
     function limpaCampos(){
       setCana1(
@@ -567,7 +566,10 @@ export default function Infestacao({route}){
     </CenterView>
 
     </ThemeProvider>
-)}
+)};
+
+
+export default memo(Infestacao);
   
 
 

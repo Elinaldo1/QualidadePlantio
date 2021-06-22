@@ -19,7 +19,7 @@ export default function Amostra() {
   const [load, setLoad] = useState(true);
   const schema = 'Infestacao'
   
-  useEffect(() => {
+ useEffect(() => {
 
    const foco =  navigation.addListener('focus', async () =>{
 
@@ -36,7 +36,7 @@ export default function Amostra() {
       return foco;
 
       
-  }),[navigation];
+  },[navigation]);
 
 
 

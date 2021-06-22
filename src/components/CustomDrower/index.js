@@ -1,26 +1,32 @@
-import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import React, { useContext } from 'react';
+import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import React, { memo, useContext } from 'react';
 import { Image, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import AuthProvider, { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/auth';
+// import AuthProvider from '../../contexts/auth';
 import { SubtituloDraewr, TituloDrawer } from './style';
 
 
 
-export default function CustomDrower(props) {
+function CustomDrower(props) {
 
-  const { signOut } = useContext(AuthContext);
+  const { rotas, signOut } = useContext(AuthContext);
 
  return (
    <>
-   <AuthProvider>
+   {/* <AuthProvider> */}
     <View style = {{padding:10, width:'100%', height: '18%', backgroundColor:'#fff', alignItems: 'center'}}>
       <Image source = {require('../../assets/icoApp.png')} style={{width:60, height:60}}/>
-      <TituloDrawer>Apontamento Qualidade</TituloDrawer>
+      <TituloDrawer>Apontamentos</TituloDrawer>
       <SubtituloDraewr>{props.activeScreen}</SubtituloDraewr>
     </View>
   <DrawerContentScrollView {...props} style = {{backgroundColor:'#fff'}} >
+    <DrawerItem {...props}
+      label = 'Home'
+      onPress = {()=>{rotas('Home')}}
+    />
     <DrawerItemList {...props}/>
+
 
   </DrawerContentScrollView>
 
@@ -46,8 +52,10 @@ export default function CustomDrower(props) {
       </TouchableOpacity>
   </View>
 
-  </AuthProvider>
+  {/* </AuthProvider> */}
 
   </>
   );
-}
+};
+
+export default memo(CustomDrower);

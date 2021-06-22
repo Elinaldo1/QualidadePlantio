@@ -1,14 +1,12 @@
-import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Keyboard } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import * as Yup from 'yup';
 import InputText from '../../../components/forms/input';
 import Combobox from '../../../components/forms/Picker';
 import Header from '../../../components/header';
-import { AuthContext } from '../../../contexts/auth';
 import getRealm, { criarEditarRealm, criarRealm } from '../../../services';
 import { Local } from '../../location';
 import {
@@ -30,15 +28,10 @@ const cores = {
 
 export default function Formi ({route}){
  
-//  alert(JSON.stringify(editar)) 
-
   const navigation = useNavigation();
   const [botaoSalvar, setBotaoSalvar] = useState('Salvar');
   const [idEdit, setIdEdit] = useState(null);
 
-  const { user } = useContext(AuthContext);
-  
-  
   const [values, setValues] = useState({ 
        fazenda: '',
        variedade: '',
@@ -58,7 +51,7 @@ export default function Formi ({route}){
  })
 
 useEffect(() => {
-     const foco = navigation.addListener('focus', async ()=>{
+    const foco = navigation.addListener('focus', async ()=>{
 
       await AsyncStorage
       .getItem('editar').then(
@@ -115,7 +108,7 @@ useEffect(() => {
     }    
     );
     return foco;
-}),[navigation];
+},[navigation]);
 
   function limpaCampos(){
         setValues(values => ({
@@ -302,7 +295,7 @@ useEffect(() => {
   return(
     <ThemeProvider theme={cores}>
 
-    <Header caption = "QUALIDADE PLANTIO" user = {user.matricula}/>
+    <Header caption = "QUALIDADE PLANTIO"/>
   
     <Container
         onMomentumScrollEnd={e => {}}
@@ -498,19 +491,9 @@ useEffect(() => {
           onPress={() => handleSubmit()}
           title="SALVAR"
         >
-          <AntDesign name = 'save' size = {23} />
+          {/* <AntDesign name = 'save' size = {23} /> */}
           <BotaoText>{botaoSalvar}</BotaoText>
         </Botao>
-        {/* <Botao
-          onPress={()=> navigation.navigate('Parâmetros Plantio')}
-          title="SALVAR"
-        >
-          <BotaoText>Parâmetros</BotaoText>
-        </Botao>
-  
-        <Botao onPress = {() => navigation.navigate('Amostra Plantio')} >
-          <BotaoText >Amostras</BotaoText>
-        </Botao> */}
       </CenterView>
   
       </ThemeProvider>

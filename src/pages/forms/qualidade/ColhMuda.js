@@ -1,7 +1,7 @@
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Alert, Keyboard, RefreshControl, StatusBar, View } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import * as Yup from 'yup';
@@ -9,6 +9,7 @@ import { AmostraMuda } from '../../../components/Amostra';
 import InputText from '../../../components/forms/input';
 import Combobox from '../../../components/forms/Picker';
 import Header from '../../../components/header';
+import { AuthContext } from '../../../contexts/auth';
 import getRealm, { criarEditarRealm, excluirRealm } from '../../../services';
 import { BotaoCadastro, ConteinerMensagem, List, Text, TextMensagem } from '../../amostras/styles';
 import { Local } from '../../location';
@@ -36,7 +37,8 @@ const ufs = [
 const schema = 'SchemaMuda';
 
 export default function FormMuda ({route}){
-
+  
+  const {user} = useContext(AuthContext)
   const [ loading, setLoading ] = useState(false);
   const navigation = useNavigation();
   const [idEdit, setIdEdit] = useState(null)
@@ -65,7 +67,8 @@ export default function FormMuda ({route}){
     obs: '',
     })
 
-    useEffect(() => {
+   useEffect(() => {
+     
       const foco = navigation.addListener('focus', async ()=>{
         
        await AsyncStorage
@@ -126,13 +129,12 @@ export default function FormMuda ({route}){
        await AsyncStorage.removeItem('editar');
      }    
      );
-     return foco;
- }),[navigation];
+    return foco;
+ },[navigation]);
 
-   async function previa(){
-      await criarEditarRealm(dadosPrevia, schema, idEdit).then(
+   async function previa(dados){
+      await criarEditarRealm(dados, schema, idEdit).then(
         () => {
-          // setModalPrevia(false)
           Alert.alert( 'Qualiade Colheita Muda','Salvo com sucesso!'),
           limpaCampos()
         }
@@ -224,7 +226,7 @@ export default function FormMuda ({route}){
                     .then(async (houses) => {
                       if(houses !== null){
                         const coordenadas = JSON.parse(houses)
-                        console.log("coord "+houses)
+                        // console.log("coord "+houses)
                         latitude =  (coordenadas[0].latitude)
                         longitude = (coordenadas[0].longitude)
                       }else{return false}
@@ -246,7 +248,7 @@ export default function FormMuda ({route}){
                       const dados = {
                         id: id,
                         data:`${ano}-${mes}-${dia} ${hora}:${min}:${seg}`,
-                        responsavel: await AsyncStorage.getItem('user'),
+                        responsavel: user,
                         amostra: values.amostra.toString(),
                         fazenda: values.fazenda,
                         variedade: values.variedade,
@@ -266,9 +268,8 @@ export default function FormMuda ({route}){
                         lat:parseFloat(latitude),
                         long:parseFloat(longitude),
                       }
-                      
-                      setDadosPrevia(dados);
-                      previa();
+
+                      previa(dados);
                       
                     }).then(() =>{ 
                       Keyboard.dismiss()
@@ -620,7 +621,7 @@ export default function FormMuda ({route}){
           onPress={() => handleSubmit()}
           title="SALVAR"
         >
-          <AntDesign name = 'save' size = {20} color = '#fff' />
+          {/* <AntDesign name = 'save' size = {20} color = '#fff' /> */}
           <BotaoText>{botaoSalvar}</BotaoText>
         </Botao>
         <Botao

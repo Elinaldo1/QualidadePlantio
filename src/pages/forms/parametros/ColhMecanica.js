@@ -114,7 +114,7 @@ export default function ParamColhMecanica  ({route})  {
       });
       return foco;
     //  return abortController.abort();
-  }),[];
+  },[]);
 
   function limpaCampos(){
       setValues(values => ({
