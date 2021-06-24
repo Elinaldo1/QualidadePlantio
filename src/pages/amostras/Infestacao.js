@@ -2,12 +2,10 @@ import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
 import { AmostraInfestacao } from '../../components/Amostra';
 import Header from '../../components/header/index';
-import insert from '../../services/enviadados';
 import getRealm, { excluirRealm } from '../../services/index';
-import { Botao, BotaoCadastro, Container, ConteinerMensagem, List, styles, Text, TextBotao, TextMensagem } from './styles';
+import { BotaoCadastro, Container, ConteinerMensagem, List, styles, Text, TextMensagem } from './styles';
 
 
 export default function Amostra() {
@@ -68,14 +66,6 @@ export default function Amostra() {
       
    }
 
-  async function enviadados (){
-    if (amostras.length>0){ 
-      await insert(amostras, 'baselevinfestacao', schema)
-    }else{
-      Alert.alert('Sync Amostras','Não há dados para enviar')
-    }
-  }  
-
   return amostras.length>0 ? (
     
     <>
@@ -92,13 +82,6 @@ export default function Amostra() {
           novaAmostra = {()=>navigation.navigate('Apontar Amostra')} />)}
       />
       </Container>
-{/*         
-       <Botao onPress = {()=>{excluirSchemaRealm(schema)}}>
-         <TextBotao>busca amostras</TextBotao>
-       </Botao> */}
-       <Botao onPress = {()=>enviadados()}>
-         <TextBotao>Enviar ao Server</TextBotao>
-       </Botao>
 
     </>
   ):(
