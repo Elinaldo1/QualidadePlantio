@@ -53,7 +53,7 @@ export default function Amostra() {
    async function editarAmostra(data){
 
     AsyncStorage.setItem('editar','sim');
-    console.log('levando dados '+ JSON.stringify(data))
+    // console.log('levando dados '+ JSON.stringify(data))
     navigation.navigate('Apontar Amostra',{
       id: data.id,
       fazenda: data.fazenda,

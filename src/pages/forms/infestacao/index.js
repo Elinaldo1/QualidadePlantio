@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useContext, useEffect, useState } from 'react';
 import { Alert, Keyboard } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import * as Yup from 'yup';
 import InputText from '../../../components/forms/input';
 import Header from '../../../components/header';
+import { AuthContext } from '../../../contexts/auth';
 import getRealm, { criarEditarRealm } from '../../../services';
 import { Local } from '../../location';
 import {
@@ -27,6 +28,7 @@ const ufs = [
   ]
 function Infestacao({route}){
 
+  const {user} = useContext(AuthContext);
   const schema = 'Infestacao';
   const navigation = useNavigation();
 
@@ -97,7 +99,7 @@ function Infestacao({route}){
 
   
 
-  useCallback(() => {
+  useEffect(() => {
     const foco = navigation.addListener('focus', async ()=>{
 
      await AsyncStorage.getItem('editar').then(
@@ -289,7 +291,7 @@ function Infestacao({route}){
     
             if (resp!==null){Alert.alert('GPS DESLIGADO',
               `Por favor, ative o GPS \n Caso já tenha ativado ignore este alerta e tente novamente`)
-              console.log(`${latitude} - ${longitude}`)
+              // console.log(`${latitude} - ${longitude}`)
                return false
     
             }else{
@@ -300,7 +302,7 @@ function Infestacao({route}){
                     .then(async (houses) => {
                       if(houses !== null){
                         const coordenadas = JSON.parse(houses)
-                        console.log("coord "+houses)
+                        // console.log("coord "+houses)
                         latitude =  (coordenadas[0].latitude)
                         longitude = (coordenadas[0].longitude)
                       }else{return false}
@@ -314,9 +316,7 @@ function Infestacao({route}){
                       const seg = data.getSeconds();
                       
                       (async() => {
-                        
-                        const responsavel = await AsyncStorage.getItem('user')
-                        console.log('ini for')
+
                         for (let prop in canas){
                           
                             const realm = await getRealm()
@@ -324,13 +324,11 @@ function Infestacao({route}){
  
                             const id = realm.objects(`${schema}`).sorted('id',true).length > 0
                             ? realm.objects(`${schema}`).sorted('id', true)[0].id + 1 : 1;
-                            // console.log(' depois do id')
-                            
-        
+
                             const dados = {
                               id: id,
                               data:`${ano}-${mes}-${dia} ${hora}:${min}:${seg}`,
-                              responsavel: responsavel,
+                              responsavel: user,
                               fazenda: values.fazenda,
                               up: values.up.toString(),
                               ponto: values.ponto.toString(),
