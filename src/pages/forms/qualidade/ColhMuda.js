@@ -27,7 +27,7 @@ const cores={
   border:'#111', borderW: 0,
 };
 
-const placeholder = {label:'Turno', value:null, color: '#b3b3b3'};
+const placeholder = {label:'Turno *', value:null, color: '#b3b3b3'};
 const ufs = [
     {label:'A', value:'A'},
     {label:'B', value:'B'},
@@ -164,36 +164,21 @@ export default function FormMuda ({route}){
     }
 
   const validar = Yup.object().shape({
-    fazenda: Yup.string()
-      .required('Fazenda não pode está vazio'),
-    variedade: Yup.string()
-      .required('Variedade não pode está vazio'),
-    up:Yup.string()
-      .required('UP não pode está vazio'),
-    colhedora:Yup.number()
-      .required('Colhedora não pode está vazio'),
-    turno:Yup.string()
-      .required('Turno não pode está vazio'),
-    amostra:Yup.number()
-      .required('Amostra não pode está vazio'),
-    menor:Yup.string()
-      .required('<35 não pode está vazio'),
-    padrao:Yup.number()
-      .required('35 a 40 não pode está vazio'),
-    maior:Yup.number()
-      .required('>40 não pode está vazio'),
-    altura:Yup.number()
-      .required('Altura não pode está vazio'),
-    bom:Yup.number()
-      .required('Toletes bom não pode está vazio'),
-    regular:Yup.number()
-      .required('Toletes regular não pode está vazio'),
-    ruim:Yup.number()
-      .required('Toletes ruim não pode está vazio'),
-    gemas_viaveis:Yup.number()
-      .required('Gemas_viáveis não pode está vazio'),
-    gemas_inviaveis:Yup.number()
-      .required('Gemas_Inviáveisnão pode está vazio'),    
+    // fazenda: Yup.string().required(),
+    // variedade: Yup.string().required(),
+    up:Yup.string().required(),
+    colhedora:Yup.number().required(),
+    turno:Yup.string().required(),
+    amostra:Yup.number().required(),
+    menor:Yup.string().required(),
+    padrao:Yup.number().required(),
+    maior:Yup.number().required(),
+    altura:Yup.number().required(),
+    bom:Yup.number().required(),
+    regular:Yup.number().required(),
+    ruim:Yup.number().required(),
+    gemas_viaveis:Yup.number().required(),
+    gemas_inviaveis:Yup.number().required(),    
   });
 
   
@@ -462,6 +447,7 @@ export default function FormMuda ({route}){
               keyboardType = 'numeric'
               value={values.up}
               onChangeText={text => setValues((values)=>({...values,up: text}))}
+              placeholder = '*'
               />
       </ContainerInput>
 
@@ -478,6 +464,7 @@ export default function FormMuda ({route}){
       <ContainerInput width= '33%'>
         <Texto>Colhedora</Texto>
         <InputText
+              placeholder = '*'
               keyboardType = 'numeric'
               value={values.colhedora}
               onChangeText={text => setValues((values)=>({...values, colhedora: text}))}
@@ -503,6 +490,7 @@ export default function FormMuda ({route}){
               <Texto>{'< 35'}</Texto>
               <InputText 
                   keyboardType = 'numeric'
+                  placeholder = '*'
                   value={values.menor}
                   onChangeText = {text => setValues((values)=>({...values, menor: text}))}
                   />
@@ -511,6 +499,7 @@ export default function FormMuda ({route}){
             <ContainerInput width = '33%'>
               <Texto>35 a 40</Texto>
               <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value = {values.padrao}
                 onChangeText = {text => setValues((values)=>({...values, padrao: text}))}
@@ -521,6 +510,7 @@ export default function FormMuda ({route}){
             <ContainerInput width= '33%'>
               <Texto>{'>40'}</Texto>
               <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value = {values.maior}
                 onChangeText = {text => setValues((values)=>({...values, maior: text}))}
@@ -535,9 +525,10 @@ export default function FormMuda ({route}){
               <Texto>cm</Texto>
               <InputText 
                 keyboardType = 'numeric'
+                placeholder = '*'
                 value = {values.altura}
                 onChangeText = {text => setValues((values)=>({...values, altura: text}))}
-              />
+                />
             </ContainerInput>
           </Campos>
           </ContainerCampos>      
@@ -551,6 +542,7 @@ export default function FormMuda ({route}){
             <ContainerInput width = '33%'>
               <Texto>BOM</Texto>
               <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value = {values.bom}
                 onChangeText = {text => setValues((values)=>({...values,bom: text}))}
@@ -560,6 +552,7 @@ export default function FormMuda ({route}){
             <ContainerInput width = '33%'>
               <Texto>REGULAR</Texto>
               <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value = {values.regular}
                 onChangeText = {text => setValues((values)=>({...values, regular: text}))}
@@ -569,6 +562,7 @@ export default function FormMuda ({route}){
             <ContainerInput width = '33%'>
               <Texto>RUIM</Texto>
               <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value = {values.ruim}
                 onChangeText = {text => setValues((values)=>({...values, ruim: text}))}
@@ -583,6 +577,7 @@ export default function FormMuda ({route}){
             <ContainerInput width = '33%'>
               <Texto>Viáveis</Texto>
               <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value = {values.gemas_viaveis}
                 onChangeText = {text => setValues((values)=>({...values, gemas_viaveis: text}))}
@@ -592,6 +587,7 @@ export default function FormMuda ({route}){
             <ContainerInput width = '33%'>
               <Texto>Inviáveis</Texto>
               <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value = {values.gemas_inviaveis}
                 onChangeText = {text => setValues((values)=>({...values, gemas_inviaveis: text}))}

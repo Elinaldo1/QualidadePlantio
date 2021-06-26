@@ -1,6 +1,7 @@
 import { AntDesign } from '@expo/vector-icons';
 import React, { useContext, useState } from "react";
 import { Image, Keyboard, StatusBar, Text, View } from "react-native";
+import { version } from '../../../package.json';
 import { AuthContext } from '../../contexts/auth';
 import CaixaTexto, { Background, Botao, Styles } from './style';
 
@@ -27,6 +28,7 @@ export default function Login(){
             <View style = {{flex:1, alignItems: 'center', justifyContent: 'center'}}>
               <Image source = {require('../../assets/icoApp.png')} style={{width:150, height:150, justifyContent: 'center'}}/>
               <Text style ={{padding:10, fontWeight: 'bold', color: '#fff', fontSize: 18}} >APONTAMENTOS</Text>
+              <Text style ={{padding:10, color: '#fff'}} >V-{version}</Text>
             </View>
         <View style = { Styles.container }> 
             <Text style ={{padding:10, fontWeight: 'bold', color: 'green', fontSize: 18}} >LOGIN</Text>

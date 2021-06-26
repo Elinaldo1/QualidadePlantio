@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useEffect, useState } from 'react';
 import { Image, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { version } from '../../../package.json';
 import { AuthContext } from '../../contexts/auth';
 import { BotaoSair, styles, TextBotao } from './styles';
 
@@ -33,6 +34,7 @@ function Form () {
         <View style = {{padding:10, alignItems: 'center', justifyContent: 'center', backgroundColor: '#00b33b'}}>
                 <Image source = {require('../../assets/icoApp.png')} style={{width:80, height:80, justifyContent: 'center'}}/>
                 <Text style ={{padding:10, fontWeight: 'bold', color: '#fff', fontSize: 18}} >APONTAMENTOS</Text>
+                <Text style ={{padding:10, color: '#fff'}} >V-{version}</Text>
                 <Text style ={{padding:10, fontWeight: 'bold', color: '#fff', fontSize: 18}} >Matrícula: {user}</Text>
         </View>
         <View style={styles.container}>
