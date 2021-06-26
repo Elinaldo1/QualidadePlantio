@@ -22,7 +22,7 @@ const cores={
   border:'#111', borderW: 0,
 };
 
-const placeholder = {label:'Turno', value:null, color: '#b3b3b3'};
+const placeholder = {label:'Turno *', value:null, color: '#b3b3b3'};
 const ufs = [
     {label:'A', value:'A'},
     {label:'B', value:'B'},
@@ -143,34 +143,20 @@ export default function FormColhMec({route}){
     }
 
   const validar = Yup.object().shape({
-    codFazenda: Yup.string()
-      .required('Código Fazenda não pode está vazio'),
-    fazenda: Yup.string()
-      .required('Fazenda não pode está vazio'),
-    colhedora:Yup.number()
-      .required('Colhedora não pode está vazio'),
-    turno:Yup.string()
-      .required('Turno não pode está vazio'),
-    talhao:Yup.string()
-      .required('Talhão não pode está vazio'),
-    amostra:Yup.number()
-      .required('Amostra não pode está vazio'),
-    frente:Yup.string()
-      .required('Frente não pode está vazio'),
-    lider:Yup.number()
-      .required('Líder não pode está vazio'),
-    operador:Yup.number()
-      .required('Operador não pode está vazio'),
-    tolete:Yup.number()
-      .required('Tolete não pode está vazio'),
-    estilhaco:Yup.number()
-      .required('Estilhaco não pode está vazio'),
-    toco:Yup.number()
-      .required('Toco não pode está vazio'),
-    pedaco:Yup.number()
-      .required('Pedaco não pode está vazio'),
-    ponta:Yup.number()
-      .required('Ponta não pode está vazio'),    
+    // codFazenda: Yup.string().required(),
+    // fazenda: Yup.string().required(),
+    colhedora:Yup.number().required(),
+    turno:Yup.string().required(),
+    // talhao:Yup.string().required(),
+    amostra:Yup.number().required(),
+    frente:Yup.string().required(),
+    // lider:Yup.number().required(),
+    // operador:Yup.number().required(),
+    tolete:Yup.number().required(),
+    estilhaco:Yup.number().required(),
+    toco:Yup.number().required(),
+    pedaco:Yup.number().required(),
+    ponta:Yup.number().required(),    
   });
   
   async function handleSubmit () {
@@ -322,6 +308,7 @@ export default function FormColhMec({route}){
                 keyboardType = 'numeric'
                 value={values.frente}
                 onChangeText = {text => setValues((values)=>({...values, frente: text}))}
+                placeholder = "*"
             />
         </ContainerInput>
   
@@ -347,7 +334,7 @@ export default function FormColhMec({route}){
           <Texto>Talhão</Texto>
           <InputText
                 keyboardType = 'numeric'
-                placeholder = '*'
+                placeholder = ''
                 value={values.talhao}
                 onChangeText={text => setValues((values)=>({...values, talhao: text}))}
                 />
@@ -377,7 +364,7 @@ export default function FormColhMec({route}){
         <ContainerInput width= '25%'>
           <Texto>Colhedora</Texto>
           <InputText
-                placeholder = 'px'
+                placeholder = 'px *'
                 keyboardType = 'numeric'
                 value={values.colhedora}
                 onChangeText={text => setValues((values)=>({...values, colhedora: text}))}
@@ -413,7 +400,7 @@ export default function FormColhMec({route}){
               <ContainerInput width = '33%'>
                 <Texto>Tolete</Texto>
                 <InputText 
-                  placeholder = 'ex: 1.5'
+                  placeholder = 'ex: 1.5 *'
                   keyboardType = 'numeric'
                   value = {values.tolete}
                   onChangeText = {text => setValues((values)=>({...values, tolete: text}))}
@@ -423,7 +410,7 @@ export default function FormColhMec({route}){
               <ContainerInput width = '33%'>
                 <Texto>inteira</Texto>
                 <InputText
-                  placeholder = 'ex: 1.5'
+                  placeholder = 'ex: 1.5 *'
                   keyboardType = 'numeric'
                   value = {values.inteira}
                   onChangeText = {text => setValues((values)=>({...values,inteira: text}))}
@@ -433,7 +420,7 @@ export default function FormColhMec({route}){
               <ContainerInput width = '33%'>
                 <Texto>Estilhaco</Texto>
                 <InputText
-                  placeholder = 'ex: 1.5'
+                  placeholder = 'ex: 1.5 *'
                   keyboardType = 'numeric'
                   value = {values.estilhaco}
                   onChangeText = {text => setValues((values)=>({...values, estilhaco: text}))}
@@ -443,7 +430,7 @@ export default function FormColhMec({route}){
               <ContainerInput width = '33%'>
                 <Texto>Toco</Texto>
                 <InputText
-                  placeholder = 'ex: 1.5'
+                  placeholder = 'ex: 1.5 *'
                   keyboardType = 'numeric'
                   value = {values.toco}
                   onChangeText = {text => setValues((values)=>({...values, toco: text}))}
@@ -453,7 +440,7 @@ export default function FormColhMec({route}){
               <ContainerInput width = '33%'>
                 <Texto>Pedaço</Texto>
                 <InputText
-                  placeholder = 'ex: 1.5'
+                  placeholder = 'ex: 1.5 *'
                   keyboardType = 'numeric'
                   value = {values.pedaco}
                   onChangeText = {text => setValues((values)=>({...values, pedaco: text}))}
@@ -463,7 +450,7 @@ export default function FormColhMec({route}){
               <ContainerInput width = '33%'>
                 <Texto>Ponta</Texto>
                 <InputText
-                  placeholder = 'ex: 1.5'
+                  placeholder = 'ex: 1.5 *'
                   keyboardType = 'numeric'
                   value = {values.ponta}
                   onChangeText = {text => setValues((values)=>({...values, ponta: text}))}

@@ -29,6 +29,8 @@ import java.util.Arrays;
 import java.util.List;
 import javax.annotation.Nullable;
 
+// 1. Importe a classe do plugin. 
+import  com.microsoft.codepush.react.CodePush ;
 
 public class MainApplication extends Application implements ReactApplication {
   private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
@@ -53,14 +55,19 @@ public class MainApplication extends Application implements ReactApplication {
       return "index";
     }
 
-    @Override
-    protected @Nullable String getJSBundleFile() {
-      if (BuildConfig.DEBUG) {
-        return super.getJSBundleFile();
-      } else {
-        return UpdatesController.getInstance().getLaunchAssetFile();
-      }
+    @Override 
+    protected  String  getJSBundleFile () {
+          return  CodePush . getJSBundleFile ();
     }
+
+    // @Override
+    // protected @Nullable String getJSBundleFile() {
+    //   if (BuildConfig.DEBUG) {
+    //     return super.getJSBundleFile();
+    //   } else {
+    //     return UpdatesController.getInstance().getLaunchAssetFile();
+    //   }
+    // }
 
     @Override
     protected @Nullable String getBundleAssetName() {
