@@ -395,6 +395,7 @@ function Infestacao({route}){
     <ContainerInput width= '100%' >
       <Texto>Fazenda</Texto>
       <InputText
+          placeholder = '*'
           value={values.fazenda}
           onChangeText={text => setValues(values => ({...values, fazenda: text}))}
       />
@@ -403,6 +404,7 @@ function Infestacao({route}){
     <ContainerInput width= '33%' >
       <Texto>Ponto</Texto>
       <InputText
+          placeholder = '*'
           value={values.ponto}
           onChangeText={text => setValues(values => ({...values, ponto: text}))}
           keyboardType = 'numeric'        
@@ -412,6 +414,7 @@ function Infestacao({route}){
     <ContainerInput width= '33%' >
       <Texto>Talhao</Texto>
       <InputText
+            placeholder = '*'
             value={values.talhao}
             onChangeText={text => setValues(values => ({...values, talhao: text}))}
             keyboardType = 'numeric'
@@ -421,6 +424,7 @@ function Infestacao({route}){
     <ContainerInput width= '33%'>
       <Texto>UP</Texto>
       <InputText
+            placeholder = '*'
             keyboardType = 'numeric'
             value={values.up}
             onChangeText={text => setValues((values) => ({...values, up: text}))}
@@ -437,6 +441,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%' >
           <Texto>Totais</Texto>
           <InputText
+                placeholder = '*'
                 value={cana1.entreno_total}
                 onChangeText={text => setCana1(values => ({...values, entreno_total:text}))}
                 editable={idEdit !==null ? route.params?.cana ==1 ? true : false :true}
@@ -447,6 +452,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%'>
           <Texto>Brocados</Texto>
           <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value={cana1.entreno_bc}
                 onChangeText={text => setCana1(values => ({...values, entreno_bc:text}))}
@@ -461,6 +467,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%' >
           <Texto>Totais</Texto>
           <InputText
+                placeholder = '*'
                 value={cana2.entreno_total}
                 onChangeText={text => setCana2(values => ({...values, entreno_total:text}))}
                 editable={idEdit !==null ? route.params?.cana ==2 ? true : false :true}                
@@ -471,6 +478,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%'>
           <Texto>Brocados</Texto>
           <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value={cana2.entreno_bc}
                 onChangeText={text => setCana2(values => ({...values, entreno_bc:text}))}
@@ -485,6 +493,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%' >
           <Texto>Totais</Texto>
           <InputText
+                placeholder = '*'
                 value={cana3.entreno_total}
                 onChangeText={text => setCana3(values => ({...values, entreno_total:text}))}
                 editable={idEdit !==null ? route.params?.cana ==3 ? true : false :true} 
@@ -495,6 +504,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%'>
           <Texto>Brocados</Texto>
           <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value={cana3.entreno_bc}
                 onChangeText={text => setCana3(values => ({...values, entreno_bc:text}))}
@@ -509,6 +519,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%' >
           <Texto>Totais</Texto>
           <InputText
+                placeholder = '*'
                 value={cana4.entreno_total}
                 onChangeText={text => setCana4(values => ({...values, entreno_total:text}))}
                 editable={idEdit !==null ? route.params?.cana ==4 ? true : false :true}
@@ -519,6 +530,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%'>
           <Texto>Brocados</Texto>
           <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value={cana4.entreno_bc}
                 onChangeText={text => setCana4(values => ({...values, entreno_bc:text}))}
@@ -533,6 +545,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%' >
           <Texto>Totais</Texto>
           <InputText
+                placeholder = '*'
                 value={cana5.entreno_total}
                 onChangeText={text => setCana5(values => ({...values, entreno_total:text}))}
                 editable={idEdit !==null ? route.params?.cana ==5 ? true : false :true}
@@ -543,6 +556,7 @@ function Infestacao({route}){
         <ContainerInput width= '50%'>
           <Texto>Brocados</Texto>
           <InputText
+                placeholder = '*'
                 keyboardType = 'numeric'
                 value={cana5.entreno_bc}
                 onChangeText={text => setCana5(values => ({...values, entreno_bc:text}))}

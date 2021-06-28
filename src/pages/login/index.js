@@ -27,8 +27,8 @@ export default function Login(){
             <StatusBar barStyle = 'default'  backgroundColor = '#00b33b'/>
             <View style = {{flex:1, alignItems: 'center', justifyContent: 'center'}}>
               <Image source = {require('../../assets/icoApp.png')} style={{width:150, height:150, justifyContent: 'center'}}/>
-              <Text style ={{padding:10, fontWeight: 'bold', color: '#fff', fontSize: 18}} >APONTAMENTOS</Text>
-              <Text style ={{padding:10, color: '#fff'}} >V-{version}</Text>
+              <Text style ={{padding:10, paddingBottom:1, fontWeight: 'bold', color: '#fff', fontSize: 18}} >APONTAMENTOS</Text>
+              <Text style ={{padding:10, paddingTop:1, color: '#fff', fontWeight: 'bold'}} >V-{version}</Text>
             </View>
         <View style = { Styles.container }> 
             <Text style ={{padding:10, fontWeight: 'bold', color: 'green', fontSize: 18}} >LOGIN</Text>

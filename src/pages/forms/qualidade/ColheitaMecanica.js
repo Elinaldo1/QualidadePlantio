@@ -250,9 +250,9 @@ export default function FormColhMec({route}){
                   });
                 }else{
 
-                  const totalPerda= (parseInt(values.tolete)+parseInt(values.estilhaco)+
-                  parseInt(values.toco)+parseInt(values.ponta)+ 
-                  parseInt(values.pedaco)+ parseInt(values.inteira))
+                  const totalPerda= (parseFloat(values.tolete)+parseFloat(values.estilhaco)+
+                  parseFloat(values.toco)+parseFloat(values.ponta)+ 
+                  parseFloat(values.pedaco)+ parseFloat(values.inteira))
 
                   const perdaHa = parseFloat(((totalPerda*10000)/9.9)/1000).toFixed(3).toString()
 

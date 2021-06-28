@@ -7,3 +7,4 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 -keep class io.realm.react.**
+-keep public class MyClass
