@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Alert, Keyboard } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import * as Yup from 'yup';
 import InputText from '../../../components/forms/input';
 import Combobox from '../../../components/forms/Picker';
 import Header from '../../../components/header';
+import { AuthContext } from '../../../contexts/auth';
 import getRealm, { criarEditarRealm } from '../../../services';
 import { Local } from '../../location';
 import {
@@ -22,15 +23,17 @@ const cores={
   border:'#111', borderW: 0,
 };
 
+
 const placeholder = {label:'Turno *', value:null, color: '#b3b3b3'};
 const ufs = [
-    {label:'A', value:'A'},
-    {label:'B', value:'B'},
-    {label:'C', value:'C'},
-  ]
+  {label:'A', value:'A'},
+  {label:'B', value:'B'},
+  {label:'C', value:'C'},
+]
 
 export default function FormColhMec({route}){
-
+  
+  const { user } = useContext(AuthContext);
   const schema = 'SchemaColhMecanica';
   const navigation = useNavigation();
   const [idEdit, setIdEdit] = useState(null);
@@ -212,7 +215,7 @@ export default function FormColhMec({route}){
                          const dados = {
                            id: id,
                            data:`${ano}-${mes}-${dia} ${hora}:${min}:${seg}`,
-                           responsavel: await AsyncStorage.getItem('user'),
+                           responsavel: user,
                            talhao: values.talhao.toString(),
                            amostra: values.amostra.toString(),
                            codFazenda: values.codFazenda,
